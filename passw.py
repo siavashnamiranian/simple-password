@@ -25,7 +25,8 @@ def password_creator(v):
 
 #gui
 root = Tk()
-
+root.title("password creator")
+root.geometry("300x200")
 #scale
 pass_lenght = DoubleVar() 
 s1 = Scale( root, variable = pass_lenght, from_ = 5, to = 20, orient = HORIZONTAL, command = password_creator)
