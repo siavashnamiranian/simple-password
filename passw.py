@@ -33,7 +33,7 @@ s1.pack(anchor = CENTER)
 #scale
 
 #radio button
-var = IntVar()
+var = IntVar(value=1)
 r1 = Radiobutton(root, text = "weak", variable = var, value = 1)
 r1.pack(anchor = W)
 
