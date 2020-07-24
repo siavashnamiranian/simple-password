@@ -1,27 +1,48 @@
-#simple password
-
+from tkinter import *
 import random
 
-def passw(pass_lenght,strenght):
+def password_creator(v):
     weak = ['a','b', 'c', 'd', 'e', 'f','g','h','i','j',
-            'k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+                'k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
     medium = ['a','b', 'c', 'd', 'e', 'f','g','h','i','j',
-              'k','l','m','n','o','p','q','r','s','t','u','v',
-              'w','x','y','z','1','2','3','4','5','6','7','8','9','0']
+            'k','l','m','n','o','p','q','r','s','t','u','v',
+            'w','x','y','z','1','2','3','4','5','6','7','8','9','0']
     strong = ['a','b', 'c', 'd', 'e', 'f','g','h','i','j',
-              'k','l','m','n','o','p','q','r','s','t','u','v',
-              'w','x','y','z','1','2','3','4','5','6','7','8',
-              '9','0','/','#','-','_','%','&','@','$']
-    if strenght=="weak":
-        p =  "".join(random.sample(weak,pass_lenght ))
-        return p
-    elif strenght=="average":
-        pass_lenght_average=pass_lenght
-        p =  "".join(random.sample(medium,pass_lenght_average))
-        return p
-    elif strenght=="hard":
-        pass_lenght_hard=pass_lenght
-        p =  "".join(random.sample(strong,pass_lenght_hard))
-        return p
+            'k','l','m','n','o','p','q','r','s','t','u','v',
+            'w','x','y','z','1','2','3','4','5','6','7','8',
+            '9','0','/','#','-','_','%','&','@','$']
+    if str(var.get())=="1":
+        p =  "".join(random.sample(weak,int(v)))
+        label.config(text = p)
+    elif str(var.get())=="2":
+        p =  "".join(random.sample(medium,int(v)))
+        label.config(text = p)
+    elif str(var.get())=="3":
+        p =  "".join(random.sample(strong,int(v)))
+        label.config(text = p)
     else:
         print(" wrong_input ")
+
+#gui
+root = Tk()
+
+#scale
+pass_lenght = DoubleVar() 
+s1 = Scale( root, variable = pass_lenght, from_ = 5, to = 20, orient = HORIZONTAL, command = password_creator)
+s1.pack(anchor = CENTER)
+#scale
+
+#radio button
+var = IntVar()
+r1 = Radiobutton(root, text = "weak", variable = var, value = 1)
+r1.pack(anchor = W)
+
+r2 = Radiobutton(root, text = "medium", variable = var, value = 2)
+r2.pack(anchor = W)
+
+r3 = Radiobutton(root, text = "hard", variable = var, value = 3 )
+r3.pack(anchor = W)
+
+label = Label(root)
+label.pack()
+root.mainloop()
