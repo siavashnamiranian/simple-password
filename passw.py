@@ -13,17 +13,21 @@ def password_creator(v):
             '9','0','/','#','-','_','%','&','@','$']
     if str(var.get())=="1":
         p =  "".join(random.sample(weak,int(v)))
-        label.config(text = p)
+        text_entry.delete(0, END)
+        text_entry.insert(0, p)
     elif str(var.get())=="2":
         p =  "".join(random.sample(medium,int(v)))
-        label.config(text = p)
+        text_entry.delete(0, END)
+        text_entry.insert(0, p)
     elif str(var.get())=="3":
         p =  "".join(random.sample(strong,int(v)))
-        label.config(text = p)
+        text_entry.delete(0, END)
+        text_entry.insert(0, p)
     else:
-        label.config(text = "choose one of options")
+        text_entry.delete(0, END)
+        text_entry.insert(0, "wrong input")
 
-#gui
+#window
 root = Tk()
 root.title("password creator")
 root.geometry("300x200")
@@ -31,9 +35,7 @@ root.geometry("300x200")
 pass_lenght = DoubleVar() 
 s1 = Scale( root, variable = pass_lenght, from_ = 5, to = 20, orient = HORIZONTAL, command = password_creator)
 s1.pack(anchor = CENTER)
-#scale
-
-#radio button
+#radio buttons
 var = IntVar(value=1)
 r1 = Radiobutton(root, text = "weak", variable = var, value = 1)
 r1.pack(anchor = W)
@@ -43,7 +45,8 @@ r2.pack(anchor = W)
 
 r3 = Radiobutton(root, text = "hard", variable = var, value = 3 )
 r3.pack(anchor = W)
-
-label = Label(root)
-label.pack()
+#text_entry
+text_var = StringVar()
+text_entry=Entry(root,textvariable=text_var)
+text_entry.pack()
 root.mainloop()
